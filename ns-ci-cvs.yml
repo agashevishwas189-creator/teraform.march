@@ -16,7 +16,7 @@ spec:
      - name: ns-container
        image: httpd:latest
        ports:
-          -containerPort: 80  
+        - containerPort: 80  
 ---
 
 apiVersion: v1 
@@ -38,12 +38,12 @@ spec:
 apiVersion: v1  
 kind: Service
 metadata:
-    name: nordport
+    name: nodeport
     namespace: nsci
     labels:
       app: ns-all
 spec:
-  type: NordPort
+  type: NodePort
   selector:
       app: ns-all     
   ports:
@@ -66,8 +66,9 @@ spec:
    - protocol: TCP
      port: 80
      targetPort: 80
-                              
-
+# kubectl apply -f ns-ci-cvs.yml - to create the namespace, pod and services
+#kubectl get ns - to get the namespaces in the cluster
+#kubectl get pods -n nsci - to get the pods in the namespace nsci 
 
 
 
